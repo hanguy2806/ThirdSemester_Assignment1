@@ -30,7 +30,8 @@ public class BasePlusCommissionEmployee {
 
 	// define getter, setter for gross salary and base salary
 	public void setGrossSales(double grossSales) {
-		this.grossSales = grossSales;
+		if(grossSales >0)
+			this.grossSales = grossSales;
 	}
 
 	public double getGrossSales() {
@@ -46,35 +47,51 @@ public class BasePlusCommissionEmployee {
 	public double getCommissionRate() {
 		return commissionRate;
 	}
-	
-	//this constructor initializes all instance date members
-	public BasePlusCommissionEmployee(int empId,String firstName,String lastName,
-			double baseSalary,double grossSales,double commissionRate) {
-		this.empId=empId;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.baseSalary=baseSalary;
-		this.grossSales=grossSales;
-		this.commissionRate=commissionRate;		
+
+	// this constructor initializes all instance date members
+	public BasePlusCommissionEmployee(int empId, String firstName, String lastName, double baseSalary,
+			double grossSales, double commissionRate) {
+		if (empId > 0) {
+			this.empId = empId;
+		}
+		if (firstName != null) {
+			this.firstName = firstName;
+		}
+		if (lastName != null) {
+			this.lastName = lastName;
+		}
+		if (baseSalary > 200) {
+			this.baseSalary = baseSalary;
+		}		
+		setGrossSales(grossSales);
+		setCommissionRate(commissionRate);
+
 	}
-	public BasePlusCommissionEmployee(int empId,String firstName,String lastName,double baseSalary) {
-		
-		this.empId=empId;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		if(baseSalary>200) {
-			this.baseSalary=baseSalary;
+
+	public BasePlusCommissionEmployee(int empId, String firstName, String lastName, double baseSalary) {
+
+		if (empId > 0) {
+			this.empId = empId;
+		}
+		if (firstName != null) {
+			this.firstName = firstName;
+		}
+		if (lastName != null) {
+			this.lastName = lastName;
+		}
+		if (baseSalary > 200) {
+			this.baseSalary = baseSalary;
 		}
 	}
+
 	public double earnings() {
-		return Math.round(commissionRate*grossSales/100+baseSalary);
+		return Math.round(commissionRate * grossSales / 100 + baseSalary);
 	}
+
 	@Override
 	public String toString() {
-		//return 
-		
-		return "ID: "+this.empId+"\nFirst Name: "+this.firstName+"\nLast Name: "+this.lastName+
-				"\nBase Salary: "+this.baseSalary+"$"+"\nGross Salary: "+this.grossSales+"$"+
-				"\nCommission Rate: "+this.commissionRate+"%"+"\nEarning: "+earnings()+"$";
+		return "ID: " + this.empId + "\nFirst Name: " + this.firstName + "\nLast Name: " + this.lastName
+				+ "\nBase Salary: " + this.baseSalary + "$" + "\nGross Salary: " + this.grossSales + "$"
+				+ "\nCommission Rate: " + this.commissionRate + "%" + "\nEarning: " + earnings() + "$";
 	}
 }

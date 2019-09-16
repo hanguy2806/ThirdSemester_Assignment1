@@ -1,10 +1,11 @@
+
 /*STUDENT NAME: THI THU HA NGUYEN
  * STUDENT ID: 301017727
  * DESCRIPTION: THIS IS COMMISSION EMPLOYEE CLASS
  */
 import java.math.*;
-public class CommissionEmployee
- {
+
+public class CommissionEmployee {
 	// instance variables
 	private int empId;
 	private String firstName;
@@ -12,7 +13,7 @@ public class CommissionEmployee
 	private double grossSales;
 	private double commissionRate = 0.1;
 
-	// getter,setter
+	// getter for empID,firstname, lastname
 	public int getEmpId() {
 		return empId;
 	}
@@ -30,7 +31,8 @@ public class CommissionEmployee
 	}
 
 	public void setGrossSales(double grossSales) {
-		this.grossSales = grossSales;
+		if(grossSales >0)
+			this.grossSales = grossSales;
 	}
 
 	public double getCommissionRate() {
@@ -45,17 +47,29 @@ public class CommissionEmployee
 
 	// constructors
 	public CommissionEmployee(int empId, String firstName, String lastName, double grossSales, double commissionRate) {
-		this.empId = empId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.grossSales = grossSales;
-		this.commissionRate = commissionRate;
+		if (empId > 0) {
+			this.empId = empId;
+		}
+		if (firstName != null) {
+			this.firstName = firstName;
+		}
+		if (lastName != null) {
+			this.lastName = lastName;
+		}
+		setGrossSales(grossSales);
+		setCommissionRate(commissionRate);
 	}
 
 	public CommissionEmployee(int empId, String firstName, String lastName) {
-		this.empId = empId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		if (empId > 0) {
+			this.empId = empId;
+		}
+		if (firstName != null) {
+			this.firstName = firstName;
+		}
+		if (lastName != null) {
+			this.lastName = lastName;
+		}
 	}
 
 	public double earnings() {
@@ -65,8 +79,9 @@ public class CommissionEmployee
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		
-		return "ID: "+this.empId+"\nFirst Name: "+this.firstName+"\nLast Name: "+this.lastName+
-			"\nGross Sale: "+this.grossSales+"$"+"\nCommission Rate: %2f"+this.commissionRate+"%"+"\nEarning: "+earnings()+"$";
+
+		return "ID: " + this.empId + "\nFirst Name: " + this.firstName + "\nLast Name: " + this.lastName
+				+ "\nGross Sale: " + this.grossSales + "$" + "\nCommission Rate: %2f" + this.commissionRate + "%"
+				+ "\nEarning: " + earnings() + "$";
 	}
 }
